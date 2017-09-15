@@ -8,11 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.annotation.Resource;
 
 @Controller
 @RequestMapping("/activemq")
+@EnableWebMvc
 public class ActivemqController {
 
     @Resource
@@ -27,7 +29,7 @@ public class ActivemqController {
      * @return String
      */
     @ResponseBody
-    @RequestMapping("queueSender")
+    @RequestMapping("/queueSender")
     public String queueSender(@RequestParam("message")String message){
         String opt;
         try {
@@ -39,7 +41,7 @@ public class ActivemqController {
         return opt;
     }
 
-    /**
+    /**https://stackoverflow.com/questions/41577234/why-does-spring-mvc-respond-with-a-404-and-report-no-mapping-found-for-http-req
      * 发送消息到主题
      * Topic主题 ：放入一个消息，所有订阅者都会收到
      * 这个是主题目的地是一对多的
@@ -47,7 +49,7 @@ public class ActivemqController {
      * @return String
      */
     @ResponseBody
-    @RequestMapping("topicSender")
+    @RequestMapping("/topicSender")
     public String topicSender(@RequestParam("message")String message){
         String opt;
         try {
