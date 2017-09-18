@@ -15,7 +15,7 @@ public class TopicReceiver2 implements MessageListener{
     @Override
     public void onMessage(Message message) {
         try {
-            System.out.println("TopicReceiver2接收到消息:"+((TextMessage)message).getText());
+            System.out.println("TopicReceiver2接收到消息："+((TextMessage)message).getText());
         } catch (JMSException e) {
             e.printStackTrace();
         }

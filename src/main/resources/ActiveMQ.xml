@@ -46,7 +46,6 @@
 
     <!--Spring JmsTemplate 的消息生产者 end-->
 
-
     <!-- 消息消费者 start-->
 
     <!-- 定义Queue监听器 -->

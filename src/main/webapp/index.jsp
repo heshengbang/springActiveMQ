@@ -10,23 +10,37 @@
     <script>
         $(document).ready(function(){
             $("#queue").click(function(){
-                var message = $("#queueMessage").textContent;
-                $.post('<c:url value="/springActiveMQ/activemq/queueSender"/>', {
-                        message:message
-                    },
-                    function(data,status){
+                var message = $("#queueMessage").val();
+                console.log(message);
+                if (message !== "") {
+                    $.post('<c:url value="/springActiveMQ/activemq/queueSender"/>', {
+                        message: message
+                    }, function (data, status) {
                         console.log("数据: \n" + data + "\n状态: " + status);
+                        if (status === 'success') {
+                            $("#queueMessage").val("");
+                        } else {
+                            alert("发送失败：" + "状态 " + status);
+                        }
                     });
+                }
             });
 
             $("#topics").click(function(){
-                var message = $("#topicsMessage").textContent;
-                $.post('<c:url value="/springActiveMQ/activemq/topicSender"/>',{
-                        message:message
-                    },
-                    function(data,status){
+                var message = $("#topicsMessage").val();
+                console.log(message);
+                if (message !== "") {
+                    $.post('<c:url value="/springActiveMQ/activemq/topicSender"/>', {
+                        message: message
+                    }, function (data, status) {
                         console.log("数据: \n" + data + "\n状态: " + status);
+                        if (status === 'success') {
+                            $("#topicsMessage").val("");
+                        } else {
+                            alert("发送失败：" + "状态 " + status);
+                        }
                     });
+                }
             });
         });
     </script>

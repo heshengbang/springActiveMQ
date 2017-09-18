@@ -18,7 +18,7 @@ public class QueueReceiver2 implements MessageListener {
     @Override
     public void onMessage(Message message) {
         try {
-            System.out.println("QueueReceiver2接收到消息:"+((TextMessage)message).getText());
+            System.out.println("QueueReceiver2 接收到消息："+((TextMessage)message).getText());
         } catch (JMSException e) {
             e.printStackTrace();
         }
