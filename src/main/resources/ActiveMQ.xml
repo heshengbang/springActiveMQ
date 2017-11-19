@@ -19,7 +19,7 @@
     <!-- Spring用于管理真正的ConnectionFactory的ConnectionFactory -->
     <bean id="connectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
         <!-- 目标ConnectionFactory对应真实的可以产生JMS Connection的ConnectionFactory -->
-        <property name="targetConnectionFactory" ref="amqConnectionFactory"></property>
+        <property name="targetConnectionFactory" ref="amqConnectionFactory"/>
         <!-- 同上，同理 -->
         <!-- <constructor-arg ref="amqConnectionFactory" /> -->
         <!-- Session缓存数量 -->
@@ -49,15 +49,13 @@
     <!-- 消息消费者 start-->
 
     <!-- 定义Queue监听器 -->
-    <jms:listener-container destination-type="queue" container-type="default" connection-factory="connectionFactory"
-                            acknowledge="auto">
+    <jms:listener-container>
         <jms:listener destination="test.queue" ref="queueReceiver1"/>
         <jms:listener destination="test.queue" ref="queueReceiver2"/>
     </jms:listener-container>
 
     <!-- 定义Topic监听器 -->
-    <jms:listener-container destination-type="topic" container-type="default" connection-factory="connectionFactory"
-                            acknowledge="auto">
+    <jms:listener-container destination-type="topic">
         <jms:listener destination="test.topic" ref="topicReceiver1"/>
         <jms:listener destination="test.topic" ref="topicReceiver2"/>
     </jms:listener-container>
