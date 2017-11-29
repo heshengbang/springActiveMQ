@@ -18,9 +18,12 @@ import javax.jms.Session;
 @Component("queueSender")
 public class QueueSender {
 
+    private final JmsTemplate jmsTemplate;//通过@Qualifier修饰符来注入对应的bean
+
     @Autowired
-    @Qualifier("jmsQueueTemplate")
-    private JmsTemplate jmsTemplate;//通过@Qualifier修饰符来注入对应的bean
+    public QueueSender(@Qualifier("jmsQueueTemplate") JmsTemplate jmsTemplate) {
+        this.jmsTemplate = jmsTemplate;
+    }
 
     /**
      * 发送一条消息到指定的队列（目标）

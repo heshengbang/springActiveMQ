@@ -17,8 +17,10 @@ import javax.annotation.Resource;
 public class ActivemqController {
 
     @Resource
+    private
     QueueSender queueSender;
     @Resource
+    private
     TopicSender topicSender;
 
     /**

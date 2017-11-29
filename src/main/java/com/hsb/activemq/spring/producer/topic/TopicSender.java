@@ -15,9 +15,12 @@ import javax.jms.Session;
 @Component("topicSender")
 public class TopicSender {
 
+    private final JmsTemplate jmsTemplate;
+
     @Autowired
-    @Qualifier("jmsTopicTemplate")
-    private JmsTemplate jmsTemplate;
+    public TopicSender(@Qualifier("jmsTopicTemplate") JmsTemplate jmsTemplate) {
+        this.jmsTemplate = jmsTemplate;
+    }
 
     /**
      * 发送一条消息到指定的队列（目标）
